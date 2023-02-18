@@ -1,0 +1,35 @@
+[
+    {
+        "role": "basico",
+        "permissions": []
+    },
+    {
+        "role": "medio",
+        "permissions": [
+            "GET"
+        ]
+    },
+    {
+        "role": "medio alto",
+        "permissions": [
+            "POST"
+        ]
+    },
+    {
+        "role": "alto medio",
+        "permissions": [
+            "GET",
+            "POST",
+            "PUT"
+        ]
+    },
+    {
+        "role": "alto",
+        "permissions": [
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE"
+        ]
+    }
+]
