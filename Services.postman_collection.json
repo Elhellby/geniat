@@ -1,0 +1,230 @@
+{
+	"info": {
+		"_postman_id": "ea11e251-6a7e-43d8-925c-fa371e141c06",
+		"name": "Services",
+		"description": "Api crud para publicaciones",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "994191"
+	},
+	"item": [
+		{
+			"name": "Root",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				},
+				"description": "Enpoint para validar que el api sigue activa y en funcionamiento"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = JSON.parse(responseBody)",
+							"pm.environment.set(\"token\",jsonData.data.token)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Email\":\"ale@demo.com\",\n    \"Password\":\"Password01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				},
+				"description": "Endpoint de autenticacion de usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Name\": \"alejandro\",\n    \"LastName\": \"ortega\",\n    \"Email\": \"ale@demo.com\",\n    \"Password\": \"Password01\",\n    \"Role\": \"basico\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/user/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				},
+				"description": "Permite registrar un nuevo usuario para acceder a los enpoint de publicaciones"
+			},
+			"response": []
+		},
+		{
+			"name": "Create post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Title\": \"demo titulo\",\n    \"Description\": \"vamos a ver si esto funciona\",\n    \"IdUser\": 7\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/post",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"post"
+					]
+				},
+				"description": "Enpoint para generar un nuevo registro de publicacion"
+			},
+			"response": []
+		},
+		{
+			"name": "Update post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Title\": \"demo titulo\",\n    \"Description\": \"vamos a ver si esto funciona, vamos a ver si cambio\",\n    \"id\": 7\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/post",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"post"
+					]
+				},
+				"description": "Endpoint de actualizacion de publicaciones"
+			},
+			"response": []
+		},
+		{
+			"name": "Get posts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/post",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"post"
+					]
+				},
+				"description": "Enpoint que permite listar las publicaciones que estan activas"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete posts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/post/6",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"post",
+						"6"
+					]
+				},
+				"description": "Endpoint que permite hacer una eliminacion logica de las publicaciones"
+			},
+			"response": []
+		}
+	]
+}
